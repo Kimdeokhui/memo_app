@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <title>로그인</title>
+        <link
+            rel="stylesheet"
+            href="./css/style.css"
+        />
+    </head>
+    <body>
+        <div class="form-container">
+            <h2>로그인</h2>
+            <input
+                id="login-username"
+                placeholder="아이디"
+            />
+            <input
+                id="login-password"
+                placeholder="비밀번호"
+                type="password"
+            />
+            <button id="loginBtn">로그인</button>
+            <p>계정이 없으신가요? <a href="signup.html">회원가입</a></p>
+        </div>
+
+        <script>
+            document.getElementById("loginBtn").addEventListener("click", () => {
+                const username = document.getElementById("login-username").value;
+                const password = document.getElementById("login-password").value;
+
+                fetch("http://localhost:4000/api/auth/login", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ username, password }),
+                })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        if (data.success) {
+                            alert("로그인 되었습니다.");
+                            localStorage.setItem("user", JSON.stringify(data.user));
+                            localStorage.setItem("userId", data.user.id);
+                            window.location.href = "index.html";
+                        } else {
+                            alert(data.message);
+                        }
+                    })
+                    .catch((err) => {
+                        alert("로그인 실패: " + err.message);
+                    });
+            });
+        </script>
+    </body>
+</html>

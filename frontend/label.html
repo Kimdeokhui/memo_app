@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <title>라벨 관리</title>
+        <link
+            rel="stylesheet"
+            href="./css/label.css"
+        />
+    </head>
+    <body>
+        <main class="label-container">
+            <a
+                href="index.html"
+                class="back-button"
+                aria-label="뒤로가기"
+            >
+                &lt;
+            </a>
+            <!-- 상단 타이틀 -->
+            <h1 class="title">🏷 라벨 관리</h1>
+
+            <!-- 라벨 추가 폼 -->
+            <form
+                id="labelForm"
+                class="label-form"
+                autocomplete="off"
+            >
+                <input
+                    type="text"
+                    id="labelName"
+                    name="labelName"
+                    placeholder="새 라벨 이름을 입력하세요"
+                    required
+                    aria-label="새 라벨 이름"
+                />
+                <button
+                    type="submit"
+                    aria-label="라벨 추가"
+                >
+                    추가
+                </button>
+            </form>
+
+            <!-- 라벨 리스트 -->
+            <ul
+                id="labelList"
+                class="label-list"
+            ></ul>
+        </main>
+
+        <script>
+            const userId = localStorage.getItem("userId");
+        </script>
+        <script src="./js/label.js"></script>
+    </body>
+</html>

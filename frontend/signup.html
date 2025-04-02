@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <title>회원가입</title>
+        <link
+            rel="stylesheet"
+            href="./css/style.css"
+        />
+    </head>
+    <body>
+        <div class="form-container">
+            <h2>회원가입</h2>
+
+            <input
+                id="signup-username"
+                placeholder="아이디"
+            />
+
+            <input
+                id="signup-password"
+                placeholder="비밀번호"
+                type="password"
+            />
+
+            <input
+                id="signup-password-confirm"
+                placeholder="비밀번호 확인"
+                type="password"
+            />
+
+            <input
+                id="signup-nickname"
+                placeholder="닉네임"
+            />
+
+            <button id="signupBtn">가입</button>
+
+            <p>이미 계정이 있으신가요? <a href="login.html">로그인</a></p>
+        </div>
+
+        <script>
+            document.getElementById("signupBtn").addEventListener("click", () => {
+                const username = document.getElementById("signup-username").value.trim();
+                const password = document.getElementById("signup-password").value;
+                const passwordConfirm = document.getElementById("signup-password-confirm").value;
+                const nickname = document.getElementById("signup-nickname").value.trim();
+
+                if (!username || !password || !nickname) {
+                    alert("모든 항목을 입력해주세요.");
+                    return;
+                }
+
+                if (password !== passwordConfirm) {
+                    alert("비밀번호가 일치하지 않습니다.");
+                    return;
+                }
+
+                fetch("http://localhost:4000/api/auth/signup", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ username, password, nickname }),
+                })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        if (data.success) {
+                            alert("회원가입 되었습니다.");
+                            window.location.href = "login.html";
+                        } else {
+                            alert("회원가입 실패: " + data.message);
+                        }
+                    })
+                    .catch((err) => {
+                        alert("서버 연결 실패: " + err.message);
+                    });
+            });
+        </script>
+    </body>
+</html>

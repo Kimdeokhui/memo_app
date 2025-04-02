@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <title>메모 편집</title>
+        <link
+            rel="stylesheet"
+            href="./css/open.css"
+        />
+    </head>
+    <body class="edit-mode">
+        <div class="editor-wrapper">
+            <div class="editor-card">
+                <!-- 이미지 미리보기 -->
+                <img
+                    id="previewImage"
+                    class="editor-image"
+                    style="display: none"
+                />
+
+                <!-- 메모 내용 입력 -->
+                <textarea
+                    id="memoContent"
+                    placeholder="내용을 입력하세요"
+                ></textarea>
+
+                <!-- 라벨 선택 -->
+                <div class="label-section">
+                    <h3>라벨 선택</h3>
+                    <div
+                        id="labelList"
+                        class="label-list"
+                    ></div>
+                </div>
+
+                <!-- 하단 버튼 영역 -->
+                <div class="editor-actions">
+                    <label
+                        for="imageInput"
+                        class="image-btn"
+                        >+ 이미지</label
+                    >
+                    <input
+                        type="file"
+                        id="imageInput"
+                        accept="image/*"
+                        hidden
+                    />
+                    <button
+                        id="saveBtn"
+                        class="save-btn"
+                    >
+                        저장
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 메모 저장 및 라벨 처리 스크립트 -->
+        <script src="./js/open.js"></script>
+    </body>
+</html>

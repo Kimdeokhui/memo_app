@@ -1,0 +1,146 @@
+:root {
+    /* 🎨 컬러 시스템 */
+    --primary: #2f80ed;
+    --danger: #ff4d4f;
+    --text: #333;
+    --bg: #f9f9fb;
+    --card: #ffffff;
+    --border: #e0e0e0;
+
+    /* 💎 디자인 요소 */
+    --radius: 12px;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    --hover-bg: #ebecf0;
+    --btn-hover: #1a6fe0;
+    --danger-bg: #ffecec;
+}
+
+/* 📦 기본 설정 */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Pretendard", sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+}
+
+/* 🧱 전체 컨테이너 */
+.label-container {
+    max-width: 600px;
+    margin: 80px auto;
+    background: var(--card);
+    padding: 40px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+/* 🏷️ 제목 */
+.title {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+/* ➕ 입력 폼 */
+.label-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+.label-form input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 15px;
+    background: white;
+}
+
+.label-form input:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.label-form button {
+    padding: 12px 20px;
+    background: var(--primary);
+    color: white;
+    font-weight: 500;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.label-form button:hover {
+    background: var(--btn-hover);
+}
+
+/* 🗂️ 라벨 리스트 */
+.label-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 360px;
+    overflow-y: auto;
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+}
+
+/* 🔖 개별 라벨 항목 */
+.label-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f5f5f7;
+    padding: 12px 16px;
+    border-radius: 20px;
+    font-size: 15px;
+    transition: background 0.2s;
+}
+
+.label-item:hover {
+    background: var(--hover-bg);
+}
+
+/* ❌ 삭제 버튼 */
+.delete-btn {
+    background: none;
+    border: none;
+    color: var(--danger);
+    font-size: 16px;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: background 0.2s;
+    margin-left: auto;
+}
+
+.delete-btn:hover {
+    background-color: var(--danger-bg);
+}
+
+/* 🔙 뒤로가기 버튼 */
+.back-button {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    text-decoration: none;
+    font-size: 24px;
+    color: var(--text);
+    padding: 6px 10px;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+.back-button:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}

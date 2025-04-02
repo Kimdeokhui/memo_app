@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <title>휴지통</title>
+        <link
+            rel="stylesheet"
+            href="./css/style.css"
+        />
+    </head>
+    <body>
+        <!-- 상단바 -->
+        <div class="top-bar">
+            <button
+                id="backBtn"
+                class="back-button"
+                title="뒤로가기"
+            >
+                &lt;
+            </button>
+            <button id="clearTrashBtn">휴지통 비우기</button>
+        </div>
+
+        <!-- 메모 카드 컨테이너 -->
+        <div
+            class="memo-container"
+            id="trashContainer"
+        ></div>
+
+        <!-- 스크립트 -->
+        <script>
+            const API_BASE = "http://localhost:4000/api";
+            const userId = localStorage.getItem("userId");
+
+            // 휴지통 메모 불러오기
+            const loadTrashMemos = async () => {
+                try {
+                    const res = await fetch(`${API_BASE}/trash?user_id=${userId}`);
+                    const data = await res.json();
+
+                    const container = document.getElementById("trashContainer");
+                    container.innerHTML = "";
+
+                    if (data.success && data.memos.length > 0) {
+                        data.memos.forEach((memo) => {
+                            const div = document.createElement("div");
+                            div.className = "memo-card";
+                            div.innerHTML = `
+                            <button class="restore-btn" data-id="${memo.id}" title="복원">⟲</button>
+                            <p>${memo.content}</p>
+                        `;
+                            container.appendChild(div);
+                        });
+                    } else {
+                        container.innerHTML = "<p>휴지통이 비어 있습니다.</p>";
+                    }
+                } catch (err) {
+                    alert("휴지통 불러오기 실패: " + err.message);
+                }
+            };
+
+            // 휴지통 비우기
+            const clearTrash = async () => {
+                const confirmClear = confirm("휴지통을 비우시겠습니까? 복구할 수 없습니다.");
+                if (!confirmClear) return;
+
+                try {
+                    const res = await fetch(`${API_BASE}/trash?user_id=${userId}`, {
+                        method: "DELETE",
+                    });
+                    const data = await res.json();
+
+                    if (data.success) {
+                        alert("휴지통이 비워졌습니다.");
+                        loadTrashMemos();
+                    } else {
+                        alert("삭제 실패: " + data.message);
+                    }
+                } catch (err) {
+                    alert("요청 실패: " + err.message);
+                }
+            };
+
+            // 메모 복원 처리
+            const restoreMemo = async (memoId, targetBtn) => {
+                const confirmRestore = confirm("이 메모를 복원하시겠습니까?");
+                if (!confirmRestore) return;
+
+                try {
+                    const res = await fetch(`${API_BASE}/trash/restore/${memoId}?user_id=${userId}`, {
+                        method: "POST",
+                    });
+                    const data = await res.json();
+
+                    if (data.success) {
+                        targetBtn.closest(".memo-card").remove();
+                        alert("복원 완료");
+                    } else {
+                        alert("복원 실패: " + data.message);
+                    }
+                } catch (err) {
+                    alert("요청 실패: " + err.message);
+                }
+            };
+
+            // 이벤트 리스너 등록
+            document.getElementById("clearTrashBtn").addEventListener("click", clearTrash);
+
+            document.addEventListener("click", (e) => {
+                if (e.target.classList.contains("restore-btn")) {
+                    const memoId = e.target.dataset.id;
+                    restoreMemo(memoId, e.target);
+                }
+            });
+
+            document.getElementById("backBtn").addEventListener("click", () => {
+                window.location.href = "index.html";
+            });
+
+            // 초기 로딩
+            loadTrashMemos();
+        </script>
+    </body>
+</html>

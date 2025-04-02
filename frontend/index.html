@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <title>Memo App</title>
+        <link
+            rel="stylesheet"
+            href="./css/style.css"
+        />
+    </head>
+    <body>
+        <div
+            id="sidebar"
+            class="sidebar"
+        >
+            <button
+                id="menuBtnInside"
+                class="menu-icon inside"
+            >
+                ☰
+            </button>
+            <ul>
+                <li><a href="index.html">📄 메모 목록</a></li>
+                <li><a href="trash.html">🗑 휴지통</a></li>
+                <li><a href="register.html">👤 마이페이지</a></li>
+                <li><a href="label.html">🏷 라벨 관리</a></li>
+            </ul>
+            <div class="label-filter">
+                <button
+                    data-id="all"
+                    class="filter-btn active"
+                >
+                    전체 보기
+                </button>
+                <ul id="filterLabelList"></ul>
+            </div>
+        </div>
+
+        <div class="top-bar">
+            <button
+                id="menuBtn"
+                class="menu-icon"
+            >
+                ☰
+            </button>
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="search"
+            />
+            <div class="top-right-buttons">
+                <button id="addMemoBtn">+</button>
+                <button
+                    id="trashBtn"
+                    class="icon-btn"
+                >
+                    🗑
+                </button>
+                <button
+                    id="userBtn"
+                    class="icon-btn"
+                >
+                    👤
+                </button>
+            </div>
+        </div>
+
+        <div
+            class="memo-container"
+            id="memoContainer"
+        >
+            <div
+                class="memo-card dummy"
+                style="display: none"
+            ></div>
+        </div>
+        <script src="./js/index.js"></script>
+    </body>
+</html>

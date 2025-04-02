@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <title>내 정보</title>
+        <link
+            rel="stylesheet"
+            href="./css/style.css"
+        />
+    </head>
+    <body>
+        <a
+            href="index.html"
+            class="mypage-back-btn"
+            aria-label="뒤로가기"
+            >&lt;</a
+        >
+        <div class="form-container profile-box">
+            <img
+                src="./img/Profile.JPG"
+                alt="기본 프로필"
+                class="profile-img"
+            />
+            <h2>내 정보</h2>
+            <p><strong>닉네임:</strong> <span id="user-nickname"></span></p>
+            <button id="logoutBtn">로그아웃</button>
+        </div>
+
+        <script>
+            const user = JSON.parse(localStorage.getItem("user"));
+
+            if (!user) {
+                alert("로그인이 필요합니다.");
+                window.location.href = "login.html";
+            } else {
+                document.getElementById("user-nickname").textContent = user.nickname;
+            }
+
+            document.getElementById("logoutBtn").addEventListener("click", () => {
+                localStorage.removeItem("user");
+                alert("로그아웃 되었습니다.");
+                window.location.href = "login.html";
+            });
+        </script>
+    </body>
+</html>

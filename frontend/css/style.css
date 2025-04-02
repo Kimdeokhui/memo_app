@@ -1,0 +1,547 @@
+:root {
+    --primary: #2f80ed;
+    --gray-bg: #f7f8fa;
+    --gray-border: #e0e0e0;
+    --text-dark: #1a1a1a;
+    --text-light: #666;
+    --card-bg: #ffffff;
+    --card-hover: #f3f4f6;
+    --border-radius: 12px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--gray-bg);
+    font-family: "Pretendard", "Apple SD Gothic Neo", sans-serif;
+    margin: 0;
+    padding: 0;
+    color: var(--text-dark);
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+button {
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    border: none;
+    border-radius: var(--border-radius);
+    font-weight: 500;
+}
+
+input,
+textarea {
+    font-family: inherit;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--gray-border);
+    background-color: #fff;
+    padding: 12px 16px;
+    font-size: 15px;
+    transition: box-shadow 0.2s;
+    width: 100%;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(47, 128, 237, 0.2);
+}
+
+.top-bar {
+    background-color: white;
+    padding: 0 32px;
+    height: 80px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    margin: 0 auto;
+}
+
+#searchInput {
+    flex: 1;
+    max-width: 600px;
+    background-color: #f3f4f6;
+}
+
+.top-right-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+#addMemoBtn {
+    background-color: var(--primary);
+    color: #fff;
+    padding: 10px 16px;
+    font-size: 15px;
+}
+
+#addMemoBtn:hover {
+    background-color: #1b65d6;
+}
+
+.icon-btn {
+    background-color: #e9ecf1;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 18px;
+}
+
+.icon-btn:hover {
+    background-color: #dce0e6;
+}
+
+.memo-container {
+    padding: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+}
+
+.memo-card {
+    background-color: var(--card-bg);
+    width: 200px;
+    height: 180px;
+    padding: 16px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--gray-border);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+    position: relative;
+    transition: background-color 0.2s ease, transform 0.2s;
+}
+
+.memo-card:hover {
+    background-color: var(--card-hover);
+    transform: translateY(-4px);
+}
+
+.memo-card .delete-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+.form-container {
+    max-width: 400px;
+    margin: 100px auto;
+    background: white;
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+}
+
+.form-container h2 {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 24px;
+}
+
+.form-container input,
+.form-container button {
+    padding: 12px 16px;
+    font-size: 15px;
+    margin-bottom: 12px;
+}
+
+.form-container button {
+    background-color: var(--primary);
+    color: white;
+    font-weight: 600;
+    padding: 12px 24px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 240px;
+}
+
+.form-container button:hover {
+    background-color: #1b65d6;
+}
+
+.form-container p {
+    text-align: center;
+    font-size: 14px;
+    color: var(--text-light);
+    margin-top: 12px;
+}
+
+.edit-mode {
+    background-color: #f6f8fa;
+}
+
+.edit-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 80px;
+    padding: 0 16px;
+}
+
+#memoContent {
+    width: 100%;
+    max-width: 360px;
+    height: 320px;
+    padding: 16px;
+    border: 1px solid var(--gray-border);
+    border-radius: var(--border-radius);
+    font-size: 15px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    resize: none;
+}
+
+#saveBtn {
+    margin-top: 24px;
+    background-color: var(--primary);
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 12px 24px;
+    width: 100%;
+    max-width: 360px;
+}
+
+#saveBtn:hover {
+    background-color: #1b65d6;
+}
+
+.profile-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.profile-img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.menu-icon {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0 8px;
+    margin-right: 8px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-dark);
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -260px;
+    width: 240px;
+    height: 100%;
+    background-color: white;
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.05);
+    padding: 24px 20px;
+    transition: left 0.3s ease;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    font-size: 15px;
+}
+
+.sidebar .menu-icon.inside {
+    position: absolute;
+    top: 18px;
+    left: 16px;
+    font-size: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-dark);
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 60px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: 15px;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.sidebar ul li a:hover {
+    background-color: var(--card-hover);
+}
+
+.label-filter {
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px solid var(--gray-border);
+}
+
+.label-filter button {
+    background: none;
+    padding: 6px 12px;
+    font-size: 14px;
+    color: var(--text-dark);
+    margin-bottom: 6px;
+    border-radius: 8px;
+    width: 100%;
+    text-align: left;
+}
+
+.label-filter button.active {
+    background-color: var(--card-hover);
+    font-weight: 600;
+}
+
+#filterLabelList {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+#filterLabelList li button {
+    width: 100%;
+    padding: 6px 12px;
+    font-size: 14px;
+    border-radius: 8px;
+    background-color: transparent;
+    text-align: left;
+    color: var(--text-light);
+}
+
+#filterLabelList li button:hover {
+    background-color: var(--card-hover);
+    color: var(--text-dark);
+}
+
+.editor-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 80px 16px;
+    background-color: var(--gray-bg);
+}
+
+.editor-card {
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.editor-image {
+    width: 100%;
+    border-radius: 12px;
+    object-fit: contain;
+    border: 1px solid #e0e0e0;
+    max-height: 380px;
+}
+
+#memoContent {
+    width: 100%;
+    min-height: 180px;
+    padding: 14px 16px;
+    border: 1px solid var(--gray-border);
+    border-radius: 12px;
+    font-size: 16px;
+    line-height: 1.6;
+    resize: vertical;
+    background: #fff;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.editor-actions {
+    display: flex;
+    width: 100%;
+    gap: 12px;
+}
+
+.image-btn {
+    flex: 1;
+    padding: 12px 0;
+    background-color: #f0f0f0;
+    color: #333;
+    font-weight: 500;
+    border-radius: 12px;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+}
+
+.image-btn:hover {
+    background-color: #e2e2e2;
+}
+
+.save-btn {
+    flex: 1;
+    padding: 12px 0;
+    background-color: var(--primary);
+    color: white;
+    font-weight: 600;
+    border-radius: 12px;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+}
+
+.save-btn:hover {
+    background-color: #1b65d6;
+}
+
+.label-filter {
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px solid var(--gray-border);
+
+    /* 👇 추가된 스크롤 스타일 */
+    max-height: 200px; /* 원하는 높이로 조정 가능 */
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc transparent;
+}
+
+/* 스크롤바 예쁘게 */
+.label-filter::-webkit-scrollbar {
+    width: 6px;
+}
+
+.label-filter::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+}
+
+/* 복원 버튼 */
+.restore-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: var(--primary);
+    color: white;
+    font-size: 16px;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    transition: background-color 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 0;
+}
+
+.restore-btn:hover {
+    background-color: #1b65d6;
+}
+
+.back-button {
+    font-size: 20px;
+    margin-right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #333;
+}
+.back-button:hover {
+    color: #007bff;
+}
+
+/* 마이페이지 전용 뒤로가기 버튼 */
+.mypage-back-btn {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    text-decoration: none;
+    font-size: 24px;
+    color: var(--text-dark);
+    padding: 6px 10px;
+    border-radius: 8px;
+    transition: background 0.2s;
+    z-index: 10;
+}
+
+.mypage-back-btn:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+@media (max-width: 768px) {
+    .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #searchInput {
+        width: 100%;
+    }
+
+    .top-right-buttons {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .memo-container {
+        padding: 20px;
+        gap: 16px;
+    }
+
+    .memo-card {
+        width: 100%;
+        max-width: 320px;
+        height: auto;
+        min-height: 140px;
+    }
+
+    .form-container {
+        margin: 60px 16px;
+        padding: 24px;
+    }
+
+    #memoContent {
+        height: 280px;
+    }
+
+    #saveBtn {
+        width: 100%;
+    }
+}
