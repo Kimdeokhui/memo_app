@@ -1,17 +1,17 @@
 # 📝 Memo App
 
-> 이미지와 텍스트 메모를 저장하고 관리할 수 있는 웹 애플리케이션
+> A web application for saving and managing image and text memos
 
-## 📌 주요 기능
+## 📌 Key Features
 
-- 회원가입 / 로그인
-- 메모 생성, 수정, 삭제
-- 이미지 첨부 기능 (uploads 폴더에 저장)
-- 라벨(Label) 분류 기능
-- 휴지통 기능 (삭제된 메모 복구)
-- 사용자별 메모 관리
+- User registration and login
+- Create, edit, and delete memos
+- Image attachment support (stored in the uploads folder)
+- Labeling system for memo categorization
+- Trash feature for recovering deleted memos
+- User-specific memo management
 
-## 💻 사용 기술
+## 💻 Tech Stack
 
 ### Frontend
 - HTML, CSS, JavaScript
@@ -25,28 +25,28 @@
 ```bash
 memo_app/
 ├── backend/
-│   ├── routes/         # API 라우터 (auth, label, memos 등)
-│   ├── uploads/        # 이미지 업로드 폴더
-│   ├── index.js        # 서버 진입점
-│   └── db.js           # DB 연결
-├── frontend/           # 프론트엔드 UI 파일
-├── .env                # 환경변수 설정
+│   ├── routes/         # API routes (auth, label, memos, etc.)
+│   ├── uploads/        # Image upload folder
+│   ├── index.js        # Server entry point
+│   └── db.js           # Database connection
+├── frontend/           # Frontend UI files
+├── .env                # Environment variable settings
 ├── package.json
 └── README.md
 ```
 
-## ⚙️ 실행 방법
+## ⚙️ How to Run
 
-1. 프로젝트 클론
+1. Clone the repository
 ```bash
 git clone https://github.com/kimdeokhui/memo_app.git
 cd memo_app
 ```
-2. 패키지 설치
+2. Install dependencies
 ```bash
 npm install
 ```
-3. .env 파일 생성 및 설정
+3. Create a .env file and set your database environment variables
 ```bash
 DB_HOST=localhost
 DB_USER=root
@@ -54,11 +54,10 @@ DB_PASSWORD=yourpassword
 DB_NAME=memo_app
 PORT=3000
 ```
-4. 서버 실행
-```bash
+4. Start the server```bash
 node backend/index.js
 ```
-5. 브라우저 접속
+5. Open your browser and go to
 ```bash
 http://localhost:3000
 ```
