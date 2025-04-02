@@ -54,7 +54,8 @@ DB_PASSWORD=yourpassword
 DB_NAME=memo_app
 PORT=3000
 ```
-4. Start the server```bash
+4. Start the server
+```bash
 node backend/index.js
 ```
 5. Open your browser and go to
