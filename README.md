@@ -20,7 +20,7 @@
 - Node.js + Express
 - MySQL + mysql2
 
-## 📁 폴더 구조
+## 📁 Project Structure
 
 ```bash
 memo_app/
